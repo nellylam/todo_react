@@ -50,5 +50,17 @@ ListStore = {
       item.completed = itemData.completed
       notifyComponents()
     })
+  },
+  deleteItem: function(itemId){
+    var item = findItemById(itemId)
+
+    var deleteRequest = $.ajax({
+      type: 'DELETE',
+      url: "https://listalous.herokuapp.com/lists/nellylam/items/" + itemId,
+      data: {}
+    })
+    .done(function(){
+      ListStore.loadItems();
+    })
   }
 }
